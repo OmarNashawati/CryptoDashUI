@@ -1,5 +1,6 @@
 <script setup>
   import Navbar from '@/components/Navbar.vue';
+  import CryptoGrid from '@/components/CryptoGrid.vue';
 </script>
 
 <template>
@@ -8,7 +9,7 @@
   </header>
 
   <main>
-    Hello 
+     <CryptoGrid />
   </main>
 </template>
 

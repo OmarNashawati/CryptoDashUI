@@ -7,7 +7,7 @@ const cryptoMockData = [
     change24h: -2.14,
     marketCap: 1250432000000,
     volume24h: 29843000000,
-    icon: "https://cryptologos.cc/logos/bitcoin-btc-logo.png"
+    icon: "bitcoin-btc-logo.png"
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const cryptoMockData = [
     change24h: 1.75,
     marketCap: 412430000000,
     volume24h: 19200000000,
-    icon: "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+    icon: "ethereum-eth-logo.png"
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const cryptoMockData = [
     change24h: 0.84,
     marketCap: 67500000000,
     volume24h: 4300000000,
-    icon: "https://cryptologos.cc/logos/solana-sol-logo.png"
+    icon: "solana-sol-logo.png"
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const cryptoMockData = [
     change24h: -1.12,
     marketCap: 20500000000,
     volume24h: 1100000000,
-    icon: "https://cryptologos.cc/logos/cardano-ada-logo.png"
+    icon: "cardano-ada-logo.png"
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const cryptoMockData = [
     change24h: 2.35,
     marketCap: 37200000000,
     volume24h: 870000000,
-    icon: "https://cryptologos.cc/logos/xrp-xrp-logo.png"
+    icon: "xrp-xrp-logo.png"
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const cryptoMockData = [
     change24h: -0.85,
     marketCap: 18000000000,
     volume24h: 1200000000,
-    icon: "https://cryptologos.cc/logos/dogecoin-doge-logo.png"
+    icon: "dogecoin-doge-logo.png"
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ const cryptoMockData = [
     change24h: 1.02,
     marketCap: 8100000000,
     volume24h: 340000000,
-    icon: "https://cryptologos.cc/logos/polkadot-new-dot-logo.png"
+    icon: "polkadot-new-dot-logo.png"
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ const cryptoMockData = [
     change24h: -3.45,
     marketCap: 7100000000,
     volume24h: 200000000,
-    icon: "https://cryptologos.cc/logos/litecoin-ltc-logo.png"
+    icon: "litecoin-ltc-logo.png"
   }
 ];
 
