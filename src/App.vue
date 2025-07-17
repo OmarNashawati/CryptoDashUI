@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  
+  Hello
 </template>
 
 <style scoped>
