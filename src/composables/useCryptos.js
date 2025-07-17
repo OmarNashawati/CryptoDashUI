@@ -7,7 +7,8 @@ const cryptoMockData = [
     change24h: -2.14,
     marketCap: 1250432000000,
     volume24h: 29843000000,
-    icon: "bitcoin-btc-logo.png"
+    icon: "bitcoin-btc-logo.png",
+    isActive: false
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const cryptoMockData = [
     change24h: 1.75,
     marketCap: 412430000000,
     volume24h: 19200000000,
-    icon: "ethereum-eth-logo.png"
+    icon: "ethereum-eth-logo.png", 
+    isActive: false
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ const cryptoMockData = [
     change24h: 0.84,
     marketCap: 67500000000,
     volume24h: 4300000000,
-    icon: "solana-sol-logo.png"
+    icon: "solana-sol-logo.png", 
+    isActive: true
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ const cryptoMockData = [
     change24h: -1.12,
     marketCap: 20500000000,
     volume24h: 1100000000,
-    icon: "cardano-ada-logo.png"
+    icon: "cardano-ada-logo.png", 
+    isActive: false
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ const cryptoMockData = [
     change24h: 2.35,
     marketCap: 37200000000,
     volume24h: 870000000,
-    icon: "xrp-xrp-logo.png"
+    icon: "xrp-xrp-logo.png", 
+    isActive: false
   },
   {
     id: 6,
@@ -57,7 +62,8 @@ const cryptoMockData = [
     change24h: -0.85,
     marketCap: 18000000000,
     volume24h: 1200000000,
-    icon: "dogecoin-doge-logo.png"
+    icon: "dogecoin-doge-logo.png", 
+    isActive: false
   },
   {
     id: 7,
@@ -67,7 +73,8 @@ const cryptoMockData = [
     change24h: 1.02,
     marketCap: 8100000000,
     volume24h: 340000000,
-    icon: "polkadot-new-dot-logo.png"
+    icon: "polkadot-new-dot-logo.png", 
+    isActive: true
   },
   {
     id: 8,
@@ -77,7 +84,8 @@ const cryptoMockData = [
     change24h: -3.45,
     marketCap: 7100000000,
     volume24h: 200000000,
-    icon: "litecoin-ltc-logo.png"
+    icon: "litecoin-ltc-logo.png", 
+    isActive: false
   }
 ];
 

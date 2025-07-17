@@ -1,12 +1,12 @@
 <script setup>
   import CryptoCard from './CryptoCard.vue';
-  import { getCryptos } from '@/composables/useCryptos';
 
+  const props = defineProps(['cryptoList']);
 </script>
 
 <template>
   <div class="extensions-gird js-extensions-gird">
-    <CryptoCard v-for="crtpto in getCryptos()" :key="crtpto.id" :crypto-data="crtpto"/>
+    <CryptoCard v-for="crtpto in cryptoList" :key="crtpto.id" :crypto-data="crtpto"/>
   </div>
 </template>
 

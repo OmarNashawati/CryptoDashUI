@@ -22,7 +22,7 @@
     <div class="extension-actions">
       <button class="btn btn-remove">Remove</button>
       <label class="switch">
-        <input type="checkbox" >
+        <input type="checkbox" :checked="cryptoData.isActive">
         <span class="slider round"></span>
       </label>
     </div>
