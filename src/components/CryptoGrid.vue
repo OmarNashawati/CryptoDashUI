@@ -21,6 +21,5 @@
  .extensions-gird {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
-
 }
 </style>

@@ -93,3 +93,26 @@ const cryptoMockData = [
 export const getCryptos = () => {
   return cryptoMockData;
 }
+
+export const filteredCryptos = (filterType, value) => {
+  if(filterType === 'activeCryptos') {
+    if(value === 'all'){
+      return getCryptos();
+    }else if(value === 'active'){
+      return getCryptos().filter(c => c.isActive);
+    }else{
+      return getCryptos().filter(c => !c.isActive);
+    }
+  }
+}
+
+export const searchcryptos = (query) => {
+    const regex = createWholeWordRegex(query);
+    return getCryptos().filter(c => (c.name.match(regex) || c.symbol.match(regex)));
+}
+
+function createWholeWordRegex(keyword) {
+  const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?i:).*${keyword}.*`, 'i');
+}
+
