@@ -1,6 +1,8 @@
 <script setup>
-
   import { ref, watch } from 'vue';
+
+  const emit = defineEmits(['search']) 
+  const searchQuery = '';
 
   const UI_Theme = ref(getSavedTheme());  
 
@@ -29,6 +31,18 @@
     <div class="logo">
       <img src="../assets/images/logo.svg" alt="Logo">
     </div>
+
+    <div class="search-wrapper">
+      <button class="search-button">
+        <i class="pi pi-search"></i>
+      </button>
+      <input 
+        @input="emit('search', searchQuery)" 
+        v-model="searchQuery"
+        class="search-input" 
+        type="text" placeholder="Bitcoin, BTC">
+    </div>
+
     <div @click="changeUiTheme()" class="theme-switch js-dark-mode-toggle">
       <i class="pi" :class="UI_Theme === 'dark' ? 'pi-sun' : 'pi-moon' "></i>
     </div>
@@ -36,6 +50,22 @@
 </template>
 
 <style scoped>
+
+.search-wrapper {
+  padding: 8px 12px;
+  background-color: var(--surface-muted);
+  border-radius: 0.5rem ;
+  display: flex;
+  gap: 10px;
+  height: 40px; 
+}
+
+.search-button,
+.search-input {
+  background: none;
+  border: none;
+  outline: none;
+}
 
 .header-wrapper{
   display: flex;

@@ -18,11 +18,24 @@
     }
   }
 
+  function search(query) {
+    // const regex = /(?i:).*shirt.*/i;
+    const regex = createWholeWordRegex(query);
+    const searchResult =  getCryptos().filter(c => c.name.match(regex) || c.symbol.match(regex));
+    cryptoList.value = searchResult;
+  }
+
+  function createWholeWordRegex(keyword) {
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(?i:).*${keyword}.*`, 'i');
+  }
+  
+
 </script>
 
 <template>
   <header>
-    <Navbar />
+    <Navbar @search="q => search(q)"/>
   </header>
 
   <main>
