@@ -14,7 +14,7 @@
 .extensions-gird {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 5px;
+  gap: 10px;
 }
 
 @media(max-width: 576px) {

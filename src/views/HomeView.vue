@@ -43,9 +43,21 @@
       <h1 class="header-title">Crypto Currency</h1>
       <div class="filter">
         <ul class="filter-items">
-          <li @click="filter('all')" class="js-filter-item filter-item" :class="currentFilter==='all'?'active':''">All</li>
-          <li @click="filter('active')" class="js-filter-item filter-item" :class="currentFilter==='active'?'active':''">Active</li>
-          <li @click="filter('inactive')" class="js-filter-item filter-item" :class="currentFilter==='inactive'?'active':''">Inactive</li>
+          <li 
+            @click="filter('all')" 
+            class="js-filter-item filter-item" 
+            :class="currentFilter==='all'?'active':''"
+          >All</li>
+          <li 
+            @click="filter('active')" 
+            class="js-filter-item filter-item" 
+            :class="currentFilter==='active'?'active':''"
+          >Active</li>
+          <li 
+            @click="filter('inactive')" 
+            class="js-filter-item filter-item" 
+            :class="currentFilter==='inactive'?'active':''"
+          >Inactive</li>
         </ul>
       </div>
     </div>
