@@ -3,19 +3,31 @@
   import Navbar from '@/components/Navbar.vue';
   import ActivityFilter from '@/components/ActivityFilter.vue';
   import CryptoGrid from '@/components/CryptoGrid.vue';
-  import { getCryptos, filteredCryptos, searchcryptos } from '@/composables/useCryptos';
+  import { getCryptos } from '@/composables/useCryptos';
 
   const cryptoList = ref(getCryptos());
+  const cryptoFilter = {};
   
   function filter(filterValue) {
-    cryptoList.value = filteredCryptos("activeCryptos", filterValue)
-  }
-
-  function search(query) {
-    cryptoList.value = searchcryptos(query);
+    cryptoFilter.filter = {
+      filterType: 'activeCryptos',
+      value: filterValue,
+    }
+    
+    updateList();
   }
   
+  function search(query) {
+    cryptoFilter.search = {
+      query
+    }
 
+    updateList();
+  }
+
+  function updateList() {
+    cryptoList.value = getCryptos(cryptoFilter);
+  }
 </script>
 
 <template>

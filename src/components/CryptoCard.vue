@@ -12,7 +12,8 @@
   <div class="extension-card">
     <div class="card-body">
       <div class="extension-icon">
-        <img :src="imgUrls[`../assets/images/icons/${cryptoData.icon}`]" :alt="cryptoData.symbol">
+        <!-- <img :src="imgUrls[`../assets/images/icons/${cryptoData.icon}`]" :alt="cryptoData.symbol"> -->
+        <img :src="cryptoData.icon" :alt="cryptoData.symbol">
       </div>
       <div>
         <h3 class="extension-title">{{ cryptoData.name }}</h3>
