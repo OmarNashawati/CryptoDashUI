@@ -1,27 +1,33 @@
 <script setup>
+  import { formatMoney } from '@/composables/useMoney';
+
   const props = defineProps(['cryptoData']);
 
-   const imgUrls = import.meta.glob('../assets/images/icons/*.png', {
-    import: 'default',
-    eager:true
-  });  
   
 </script>
 
 <template>
-  <div class="extension-card">
+  <div class="currency-card">
     <div class="card-body">
-      <div class="extension-icon">
+      <div class="currency-icon">
         <!-- <img :src="imgUrls[`../assets/images/icons/${cryptoData.icon}`]" :alt="cryptoData.symbol"> -->
         <img :src="cryptoData.icon" :alt="cryptoData.symbol">
       </div>
       <div>
-        <h3 class="extension-title">{{ cryptoData.name }}</h3>
-        <p class="extension-description">{{ cryptoData.price }}</p>
+        <h3 class="currency-name">
+            {{ cryptoData.name }}
+            <i class="currency-symbol">({{ cryptoData.symbol }})</i>
+        </h3>
+        <p class="currency-price">{{ formatMoney(cryptoData.price) }}</p>
+        <p 
+          class="currency-change24h" 
+          :class="cryptoData.change24h>0? 'text--green': cryptoData.change24h < 0 ?'text--red' : ''"
+        >
+          <i class="pi" :class="cryptoData.change24h > 0 ? 'pi-sort-up-fill': cryptoData.change24h < 0 ?  'pi-sort-down-fill' : 'pi-equals'"></i>
+          {{ cryptoData.change24h }}%</p>
       </div>
     </div>
-    <div class="extension-actions">
-      <button class="btn btn-remove">Remove</button>
+    <div class="currency-actions">
       <label class="switch">
         <input type="checkbox" :checked="cryptoData.isActive">
         <span class="slider round"></span>
@@ -33,7 +39,7 @@
 <style scoped>
 
 
-.extension-card {
+.currency-card {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--surface-muted);
@@ -44,7 +50,7 @@
   box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.extension-icon{
+.currency-icon{
   width: 60px;
   height: 60px;
   
@@ -55,10 +61,23 @@
   gap: 10px;
 }
 
-.extension-actions{
+.currency-price{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.currency-symbol {
+  font-size: 0.8rem;
+  font-style: normal;
+}
+
+.currency-change24h .pi{
+  font-size: 0.7rem;
+}
+.currency-actions{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .btn-remove{
