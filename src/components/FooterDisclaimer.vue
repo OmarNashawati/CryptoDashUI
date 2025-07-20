@@ -1,0 +1,21 @@
+<template>
+  <div class="disclaimer-wrapper">
+    <p class="disclaimer-content">
+      ⚠️ This crypto dashboard is for <strong>educational and practice purposes</strong> only.
+      No real trading or financial services are provided.
+     </p>
+  </div>
+</template>
+
+<style scoped>
+.disclaimer-wrapper {
+  background-color: red;
+  padding: 8px 1rem;
+  text-align: center;
+  color: wheat
+}
+
+.disclaimer-content strong{
+  font-weight: bold;
+}
+</style>

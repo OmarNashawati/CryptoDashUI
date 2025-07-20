@@ -77,6 +77,7 @@
 
 .search-input {
   padding: 0 12px;
+  color: var(--text);
 }
 .search-button,
 .search-input {
