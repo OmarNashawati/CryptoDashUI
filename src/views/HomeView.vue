@@ -1,9 +1,9 @@
 <script setup>
   import { ref } from 'vue';
+  import { getCryptos } from '@/composables/useCryptos';
   import Navbar from '@/components/Navbar.vue';
   import ActivityFilter from '@/components/ActivityFilter.vue';
   import CryptoGrid from '@/components/CryptoGrid.vue';
-  import { getCryptos } from '@/composables/useCryptos';
 
   const cryptoList = ref(getCryptos());
   const cryptoFilter = {};

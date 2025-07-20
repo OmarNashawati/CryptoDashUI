@@ -2,17 +2,15 @@
   import { formatMoney } from '@/composables/useMoney';
 
   const props = defineProps(['cryptoData']);
-
-  
 </script>
 
 <template>
   <div class="currency-card">
     <div class="card-body">
       <div class="currency-icon">
-        <!-- <img :src="imgUrls[`../assets/images/icons/${cryptoData.icon}`]" :alt="cryptoData.symbol"> -->
         <img :src="cryptoData.icon" :alt="cryptoData.symbol">
       </div>
+
       <div>
         <h3 class="currency-name">
             {{ cryptoData.name }}
@@ -27,6 +25,7 @@
           {{ cryptoData.change24h }}%</p>
       </div>
     </div>
+    
     <div class="currency-actions">
       <label class="switch">
         <input type="checkbox" :checked="cryptoData.isActive">
@@ -37,8 +36,6 @@
 </template>
 
 <style scoped>
-
-
 .currency-card {
   display: flex;
   flex-direction: column;
@@ -50,18 +47,19 @@
   box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.currency-icon{
+.currency-icon {
   width: 60px;
   height: 60px;
   
 }
-.card-body{
+
+.card-body {
   display: flex;
   height: 100px;
   gap: 10px;
 }
 
-.currency-price{
+.currency-price {
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -71,16 +69,17 @@
   font-style: normal;
 }
 
-.currency-change24h .pi{
+.currency-change24h .pi {
   font-size: 0.7rem;
 }
-.currency-actions{
+
+.currency-actions {
   display: flex;
   align-items: center;
   justify-content: end;
 }
 
-.btn-remove{
+.btn-remove {
   background: transparent;
   border: 1px solid var(--surface-muted);
   padding: 8px 12px;

@@ -34,11 +34,13 @@
     <div class="right-section">
       <div class="search-wrapper">
          <input 
-          ref="search-input-element"
-          @input="emit('search', searchQuery)" 
-          v-model="searchQuery"
-          class="search-input" 
-          type="text" placeholder="Bitcoin, BTC">
+            ref="search-input-element"
+            @input="emit('search', searchQuery)" 
+            v-model="searchQuery"
+            class="search-input" 
+            type="text" placeholder="Bitcoin, BTC"
+          >
+          
         <button @click="expandSearch()" class="search-button">
           <i class="pi pi-search"></i>
         </button>
@@ -52,8 +54,7 @@
 </template>
 
 <style scoped>
-
-.right-section{
+.right-section {
   display: flex;
   gap: 10px;
 }
@@ -101,7 +102,7 @@
   }
 }
 
-.header-wrapper{
+.header-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -112,7 +113,7 @@
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.theme-switch{
+.theme-switch {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,5 +123,4 @@
   border-radius: 0.5rem;
   cursor: pointer;
 }
-
 </style>

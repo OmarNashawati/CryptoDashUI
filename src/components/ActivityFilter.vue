@@ -10,7 +10,6 @@
     currentFilter.value = filterValue;
     emit('activty-filter', filterValue);
   }
-
 </script>
 
 <template>
@@ -40,7 +39,7 @@
   gap: 0.5rem;
 }
 
-.filter-item{
+.filter-item {
   background-color: var(--surface);
   padding: 8px 24px;
   border-radius: 25px;
