@@ -1,2 +1,19 @@
 @import './base.css';
 
+ul {
+  list-style: none;
+}
+
+img{
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+
+.text--green { 
+  color: var(--green-700); 
+}
+
+.text--red { 
+  color: var(--red-700); 
+}
