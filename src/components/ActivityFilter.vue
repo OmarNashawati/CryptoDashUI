@@ -1,34 +1,40 @@
 <script setup>
-  import { ref } from 'vue';
+import { ref } from 'vue'
 
-  const currentFilter = ref('all');
+const currentFilter = ref('all')
 
-  const props = defineProps(['currentFilter']);
-  const emit = defineEmits(['activty-filter']);
+const props = defineProps(['currentFilter'])
+const emit = defineEmits(['activty-filter'])
 
-  const filter = (filterValue) => {
-    currentFilter.value = filterValue;
-    emit('activty-filter', filterValue);
-  }
+const filter = (filterValue) => {
+  currentFilter.value = filterValue
+  emit('activty-filter', filterValue)
+}
 </script>
 
 <template>
   <ul class="filter-items">
-    <li 
-      @click="filter('all')" 
-      class="js-filter-item filter-item" 
-      :class="currentFilter==='all'?'active':''"
-    >All</li>
-    <li 
-      @click="filter('active')" 
-      class="js-filter-item filter-item" 
-      :class="currentFilter==='active'?'active':''"
-    >Active</li>
-    <li 
-      @click="filter('inactive')" 
-      class="js-filter-item filter-item" 
-      :class="currentFilter==='inactive'?'active':''"
-    >Inactive</li>
+    <li
+      @click="filter('all')"
+      class="js-filter-item filter-item"
+      :class="currentFilter === 'all' ? 'active' : ''"
+    >
+      All
+    </li>
+    <li
+      @click="filter('active')"
+      class="js-filter-item filter-item"
+      :class="currentFilter === 'active' ? 'active' : ''"
+    >
+      Active
+    </li>
+    <li
+      @click="filter('inactive')"
+      class="js-filter-item filter-item"
+      :class="currentFilter === 'inactive' ? 'active' : ''"
+    >
+      Inactive
+    </li>
   </ul>
 </template>
 

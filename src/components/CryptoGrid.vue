@@ -1,12 +1,12 @@
 <script setup>
-  import CryptoCard from './CryptoCard.vue';
+import CryptoCard from './CryptoCard.vue'
 
-  const props = defineProps(['cryptoList']);
+const props = defineProps(['cryptoList'])
 </script>
 
 <template>
   <div class="extensions-gird js-extensions-gird">
-    <CryptoCard v-for="crtpto in cryptoList" :key="crtpto.id" :crypto-data="crtpto"/>
+    <CryptoCard v-for="crtpto in cryptoList" :key="crtpto.id" :crypto-data="crtpto" />
   </div>
 </template>
 
@@ -17,8 +17,8 @@
   gap: 10px;
 }
 
-@media(max-width: 576px) {
- .extensions-gird {
+@media (max-width: 576px) {
+  .extensions-gird {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
 }

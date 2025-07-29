@@ -1,34 +1,46 @@
 <script setup>
-  import { formatMoney } from '@/composables/useMoney';
+import { formatMoney } from '@/composables/useMoney'
 
-  const props = defineProps(['cryptoData']);
+const props = defineProps(['cryptoData'])
 </script>
 
 <template>
   <div class="currency-card">
     <div class="card-body">
       <div class="currency-icon">
-        <img :src="cryptoData.icon" :alt="cryptoData.symbol">
+        <img :src="cryptoData.icon" :alt="cryptoData.symbol" />
       </div>
 
       <div>
         <h3 class="currency-name">
-            {{ cryptoData.name }}
-            <i class="currency-symbol">({{ cryptoData.symbol }})</i>
+          {{ cryptoData.name }}
+          <i class="currency-symbol">({{ cryptoData.symbol }})</i>
         </h3>
         <p class="currency-price">{{ formatMoney(cryptoData.price) }}</p>
-        <p 
-          class="currency-change24h" 
-          :class="cryptoData.change24h>0? 'text--green': cryptoData.change24h < 0 ?'text--red' : ''"
+        <p
+          class="currency-change24h"
+          :class="
+            cryptoData.change24h > 0 ? 'text--green' : cryptoData.change24h < 0 ? 'text--red' : ''
+          "
         >
-          <i class="pi" :class="cryptoData.change24h > 0 ? 'pi-sort-up-fill': cryptoData.change24h < 0 ?  'pi-sort-down-fill' : 'pi-equals'"></i>
-          {{ cryptoData.change24h }}%</p>
+          <i
+            class="pi"
+            :class="
+              cryptoData.change24h > 0
+                ? 'pi-sort-up-fill'
+                : cryptoData.change24h < 0
+                  ? 'pi-sort-down-fill'
+                  : 'pi-equals'
+            "
+          ></i>
+          {{ cryptoData.change24h }}%
+        </p>
       </div>
     </div>
-    
+
     <div class="currency-actions">
       <label class="switch">
-        <input type="checkbox" :checked="cryptoData.isActive">
+        <input type="checkbox" :checked="cryptoData.isActive" />
         <span class="slider round"></span>
       </label>
     </div>
@@ -50,7 +62,6 @@
 .currency-icon {
   width: 60px;
   height: 60px;
-  
 }
 
 .card-body {
@@ -95,7 +106,7 @@
   height: 24px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -109,20 +120,20 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -134,8 +145,8 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform:  translateX(24px);
-  -ms-transform:  translateX(24px);
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
 
