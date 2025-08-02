@@ -30,5 +30,5 @@ const filtereActiveCryptos = (value) => {
 
 function createWholeWordRegex(keyword) {
   const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  return new RegExp(`(?i:).*${keyword}.*`, 'i')
+  return new RegExp(`(?i:).*${escapedKeyword}.*`, 'i')
 }
