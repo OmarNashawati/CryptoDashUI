@@ -6,7 +6,7 @@ const props = defineProps(['cryptoList'])
 
 <template>
   <div class="extensions-gird js-extensions-gird">
-    <CryptoCard v-for="crtpto in cryptoList" :key="crtpto.id" :crypto-data="crtpto" />
+    <CryptoCard v-for="crtpto in cryptoList" :key="crtpto.ID" :crypto-data="crtpto" />
   </div>
 </template>
 

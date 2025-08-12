@@ -1,40 +1,50 @@
 <script setup>
-import { formatMoney } from '@/composables/useMoney'
+import { formatMoney, formatNumber } from '@/composables/useMoney'
 
 const props = defineProps(['cryptoData'])
+const change24hStateStyle = {}
+
+if (props.cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD > 0) {
+  change24hStateStyle.textColor = 'text--green'
+  change24hStateStyle.icon = 'pi-sort-up-fill'
+} else if (props.cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD < 0) {
+  change24hStateStyle.textColor = 'text--red'
+  change24hStateStyle.icon = 'pi-sort-down-fill'
+} else {
+  change24hStateStyle.textColor = ''
+  change24hStateStyle.icon = 'pi-equals'
+}
 </script>
 
 <template>
   <div class="currency-card">
     <div class="card-body">
       <div class="currency-icon">
-        <img :src="cryptoData.icon" :alt="cryptoData.symbol" />
+        <img :src="cryptoData.LOGO_URL" :alt="cryptoData.symbol" />
       </div>
 
       <div>
         <h3 class="currency-name">
-          {{ cryptoData.name }}
-          <i class="currency-symbol">({{ cryptoData.symbol }})</i>
+          {{ cryptoData.NAME }}
+          <i class="currency-symbol">({{ cryptoData.SYMBOL }})</i>
         </h3>
-        <p class="currency-price">{{ formatMoney(cryptoData.price) }}</p>
-        <p
-          class="currency-change24h"
-          :class="
-            cryptoData.change24h > 0 ? 'text--green' : cryptoData.change24h < 0 ? 'text--red' : ''
-          "
-        >
-          <i
-            class="pi"
-            :class="
-              cryptoData.change24h > 0
-                ? 'pi-sort-up-fill'
-                : cryptoData.change24h < 0
-                  ? 'pi-sort-down-fill'
-                  : 'pi-equals'
-            "
-          ></i>
-          {{ cryptoData.change24h }}%
-        </p>
+
+        <p class="currency-price">{{ formatMoney(cryptoData.PRICE_USD, { isBigNum: true }) }}</p>
+
+        <div class="currency-info-item">
+          24h Change:
+          <i class="currency-info-item-value" :class="change24hStateStyle.textColor">
+            {{ formatNumber(cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD) }}%
+            <i class="pi" :class="change24hStateStyle.icon"></i>
+          </i>
+        </div>
+
+        <div class="currency-info-item">
+          Market cap:
+          <i class="currency-info-item-value">
+            {{ formatMoney(cryptoData.CIRCULATING_MKT_CAP_USD, { isBigNum: true }) }}
+          </i>
+        </div>
       </div>
     </div>
 
@@ -80,8 +90,13 @@ const props = defineProps(['cryptoData'])
   font-style: normal;
 }
 
-.currency-change24h .pi {
-  font-size: 0.7rem;
+.currency-info-item {
+  font-size: 0.9rem;
+}
+
+.currency-info-item-value {
+  font-weight: bold;
+  padding: 0 10px;
 }
 
 .currency-actions {

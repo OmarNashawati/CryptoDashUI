@@ -1,31 +1,23 @@
 import { coins } from '@/assets/data/coins'
 
-export const getCryptos = (filterObj) => {
+export const getCryptos = (filter) => {
   let result = coins
-  let { filter, search } = filterObj || {}
+  let { activityFilter, search } = filter || {}
 
-  if (filter) {
-    if (filter.filterType === 'activeCryptos') {
-      result = filtereActiveCryptos(filter.value)
+  if (activityFilter) {
+    if (activityFilter === 'active') {
+      result = result.filter((c) => c.isActive)
+    } else if (activityFilter === 'inactive') {
+      result = result.filter((c) => !c.isActive)
     }
   }
 
   if (search) {
-    const regex = createWholeWordRegex(search.query)
+    const regex = createWholeWordRegex(search)
     result = result.filter((c) => c.name.match(regex) || c.symbol.match(regex))
   }
 
   return result
-}
-
-const filtereActiveCryptos = (value) => {
-  if (value === 'all') {
-    return getCryptos()
-  } else if (value === 'active') {
-    return getCryptos().filter((c) => c.isActive)
-  } else {
-    return getCryptos().filter((c) => !c.isActive)
-  }
 }
 
 function createWholeWordRegex(keyword) {

@@ -1,40 +1,48 @@
 <script setup>
-import { ref } from 'vue'
-import { getCryptos } from '@/composables/useCryptos'
+import { onMounted, ref } from 'vue'
+// import { getCryptos, getTopList } from '@/composables/useCryptos'
+import { getCrtpyos } from '@/assets/api/cryptoService'
 import Navbar from '@/components/Navbar.vue'
 import ActivityFilter from '@/components/ActivityFilter.vue'
 import CryptoGrid from '@/components/CryptoGrid.vue'
 import FooterDisclaimer from '@/components/FooterDisclaimer.vue'
 
-const cryptoList = ref(getCryptos())
-const cryptoFilter = {}
+const cryptoList = ref([])
+const loading = ref(false)
+const error = ref(null)
 
-function filter(filterValue) {
-  cryptoFilter.filter = {
-    filterType: 'activeCryptos',
-    value: filterValue,
+const fetchCrypro = async () => {
+  loading.value = true
+  try {
+    let result = await getCrtpyos()
+    console.log(result.Data.LIST)
+    cryptoList.value = result.Data.LIST
+  } catch (err) {
+    error.value = err
+  } finally {
+    loading.value = false
   }
+}
 
-  updateList()
+onMounted(fetchCrypro)
+
+const filter = {}
+
+function activityfilter(activityType) {
+  // filter.activityFilter = activityType
+  // cryptoList.value = getCryptos(filter)
 }
 
 function search(query) {
-  cryptoFilter.search = {
-    query,
-  }
-
-  updateList()
-}
-
-function updateList() {
-  cryptoList.value = getCryptos(cryptoFilter)
+  // filter.search = query
+  // cryptoList.value = getCryptos(filter)
 }
 </script>
 
 <template>
   <main>
     <header>
-      <Navbar @search="(q) => search(q)" />
+      <Navbar @search="(query) => search(query)" />
     </header>
 
     <section class="main-section">
@@ -42,11 +50,15 @@ function updateList() {
         <h1 class="header-title">Crypto Currency</h1>
 
         <div class="filter">
-          <ActivityFilter v-on:activty-filter="(value) => filter(value)" />
+          <ActivityFilter v-on:activty-filter="(value) => activityfilter(value)" />
         </div>
       </div>
 
-      <CryptoGrid :crypto-list="cryptoList" />
+      <div v-if="loading">Loading...</div>
+      <div v-else-if="error">{{ error }}</div>
+      <div v-else>
+        <CryptoGrid v-if="cryptoList" :crypto-list="cryptoList" />
+      </div>
     </section>
 
     <footer>

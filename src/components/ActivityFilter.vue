@@ -1,45 +1,45 @@
 <script setup>
 import { ref } from 'vue'
 
-const currentFilter = ref('all')
+const activityTypes = [
+  {
+    name: 'All',
+    value: 'all',
+  },
+  {
+    name: 'Active',
+    value: 'active',
+  },
+  {
+    name: 'Inactive',
+    value: 'inactive',
+  },
+]
 
-const props = defineProps(['currentFilter'])
+const currentFilter = ref(activityTypes[0].value)
 const emit = defineEmits(['activty-filter'])
 
-const filter = (filterValue) => {
-  currentFilter.value = filterValue
-  emit('activty-filter', filterValue)
+function filter(newValue) {
+  currentFilter.value = newValue
+  emit('activty-filter', newValue)
 }
 </script>
 
 <template>
-  <ul class="filter-items">
-    <li
-      @click="filter('all')"
-      class="js-filter-item filter-item"
-      :class="currentFilter === 'all' ? 'active' : ''"
+  <div class="activity-filter-container">
+    <div
+      v-for="type in activityTypes"
+      @click="filter(type.value)"
+      class="filter-item"
+      :class="currentFilter === type.value ? 'active' : ''"
     >
-      All
-    </li>
-    <li
-      @click="filter('active')"
-      class="js-filter-item filter-item"
-      :class="currentFilter === 'active' ? 'active' : ''"
-    >
-      Active
-    </li>
-    <li
-      @click="filter('inactive')"
-      class="js-filter-item filter-item"
-      :class="currentFilter === 'inactive' ? 'active' : ''"
-    >
-      Inactive
-    </li>
-  </ul>
+      {{ type.name }}
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.filter-items {
+.activity-filter-container {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
