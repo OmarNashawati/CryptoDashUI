@@ -27,11 +27,7 @@ api.interceptors.request.use(
 */
 
 api.interceptors.response.use(
-  (response) => {
-    console.log(response)
-
-    return response.data
-  },
+  (response) => response.data,
   (error) => {
     // Handle API errors globally
     if (error.response?.state === 401) {

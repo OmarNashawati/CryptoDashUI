@@ -15,7 +15,6 @@ const fetchCrypro = async () => {
   loading.value = true
   try {
     let result = await getCrtpyos()
-    console.log(result.Data.LIST)
     cryptoList.value = result.Data.LIST
   } catch (err) {
     error.value = err
