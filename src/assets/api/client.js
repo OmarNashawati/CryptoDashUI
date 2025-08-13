@@ -27,12 +27,18 @@ api.interceptors.request.use(
 */
 
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    console.log(response)
+
+    return response.data
+  },
   (error) => {
     // Handle API errors globally
     if (error.response?.state === 401) {
       // Example: Redirect to login
-      window.location.href = '/login'
+      // window.location.href = '/login'
+    } else if (error.response?.state === 404) {
+      console.log(error.response)
     }
     return Promise.reject(error)
   }
