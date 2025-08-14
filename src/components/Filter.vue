@@ -1,37 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-
-const activityTypes = [
-  {
-    name: 'All',
-    value: 'all',
-  },
-  {
-    name: 'Active',
-    value: 'active',
-  },
-  {
-    name: 'Inactive',
-    value: 'inactive',
-  },
-]
-
-const currentFilter = ref(activityTypes[0].value)
-const emit = defineEmits(['activty-filter'])
-
-function filter(newValue) {
-  currentFilter.value = newValue
-  emit('activty-filter', newValue)
-}
+import { useFilterStore } from '@/Stores/filterStore'
+const store = useFilterStore()
 </script>
 
 <template>
   <div class="activity-filter-container">
     <div
-      v-for="type in activityTypes"
-      @click="filter(type.value)"
+      v-for="type in store.filters"
+      @click="store.changeFilter(type.value)"
       class="filter-item"
-      :class="currentFilter === type.value ? 'active' : ''"
+      :class="store.getCurrentFilter() === type.value ? 'active' : ''"
     >
       {{ type.name }}
     </div>

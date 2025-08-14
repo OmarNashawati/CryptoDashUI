@@ -1,62 +1,38 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-// import { getCryptos, getTopList } from '@/composables/useCryptos'
-import { getCrtpyos } from '@/assets/api/cryptoService'
 import Navbar from '@/components/Navbar.vue'
-import ActivityFilter from '@/components/ActivityFilter.vue'
+import Filter from '@/components/Filter.vue'
 import CryptoGrid from '@/components/CryptoGrid.vue'
 import FooterDisclaimer from '@/components/FooterDisclaimer.vue'
 
-const cryptoList = ref([])
-const loading = ref(false)
-const error = ref(null)
+import { useCrytproStore } from '@/Stores/cryptoStore'
+import { onMounted } from 'vue'
 
-const fetchCrypro = async () => {
-  loading.value = true
-  try {
-    let result = await getCrtpyos()
-    cryptoList.value = result.Data.LIST
-  } catch (err) {
-    error.value = err
-  } finally {
-    loading.value = false
-  }
-}
+const cryptoStore = useCrytproStore()
 
-onMounted(fetchCrypro)
-
-const filter = {}
-
-function activityfilter(activityType) {
-  // filter.activityFilter = activityType
-  // cryptoList.value = getCryptos(filter)
-}
-
-function search(query) {
-  // filter.search = query
-  // cryptoList.value = getCryptos(filter)
-}
+onMounted(() => cryptoStore.fetchCrypro())
 </script>
 
 <template>
   <main>
     <header>
-      <Navbar @search="(query) => search(query)" />
+      <Navbar />
     </header>
 
     <section class="main-section">
       <div class="main-header">
         <h1 class="header-title">Crypto Currency</h1>
-
         <div class="filter">
-          <ActivityFilter v-on:activty-filter="(value) => activityfilter(value)" />
+          <Filter />
         </div>
       </div>
 
-      <div v-if="loading">Loading...</div>
-      <div v-else-if="error">{{ error }}</div>
-      <div v-else>
-        <CryptoGrid v-if="cryptoList" :crypto-list="cryptoList" />
+      <div>
+        <div v-if="cryptoStore.loading">Loading...</div>
+        <div v-else-if="cryptoStore.error">{{ cryptoStore.error }}</div>
+        <div v-else-if="cryptoStore.cryptoList.length === 0">No Items</div>
+        <div v-else>
+          <CryptoGrid v-if="cryptoStore.cryptoList" :crypto-list="cryptoStore.cryptoList" />
+        </div>
       </div>
     </section>
 

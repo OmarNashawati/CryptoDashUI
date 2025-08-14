@@ -1,9 +1,10 @@
 <script setup>
 import { ref, useTemplateRef } from 'vue'
 import { getTheme, applayTheme, changeTheme } from '@/composables/useTheme'
+import { useCrytproStore } from '@/Stores/cryptoStore'
+const store = useCrytproStore()
 
-const emit = defineEmits(['search'])
-const searchQuery = ''
+let searchQuery = ''
 const searchInputEle = useTemplateRef('search-input-element')
 
 function expandSearch() {
@@ -34,7 +35,7 @@ function changeUiTheme() {
       <div class="search-wrapper">
         <input
           ref="search-input-element"
-          @input="emit('search', searchQuery)"
+          @input="store.search(searchQuery)"
           v-model="searchQuery"
           class="search-input"
           type="text"

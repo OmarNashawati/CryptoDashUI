@@ -1,5 +1,8 @@
 <script setup>
 import { formatMoney, formatNumber } from '@/composables/useMoney'
+import { useUserStore } from '@/Stores/userStore'
+import { ref } from 'vue'
+const store = useUserStore()
 
 const props = defineProps(['cryptoData'])
 const change24hStateStyle = {}
@@ -14,22 +17,41 @@ if (props.cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD > 0) {
   change24hStateStyle.textColor = ''
   change24hStateStyle.icon = 'pi-equals'
 }
+
+const isInFav = ref(store.favorite.includes(props.cryptoData.ID))
+
+function addToFavorite(id) {
+  if (!isInFav.value) {
+    store.addToFavorite(id)
+    isInFav.value = true
+  } else {
+    let isConfirmed = confirm('Do you sure you want to remove item from favorite')
+    if (isConfirmed) {
+      isInFav.value = false
+      store.removeFromFavorite(id)
+    }
+  }
+}
 </script>
 
 <template>
   <div class="currency-card">
-    <div class="card-body">
+    <div class="card-head">
       <div class="currency-icon">
-        <img :src="cryptoData.LOGO_URL" :alt="cryptoData.symbol" />
+        <img :src="cryptoData.LOGO_URL" :alt="cryptoData.SYMBOL" />
       </div>
-
+      <div @click="addToFavorite(cryptoData.ID)" class="add-to-favorie">
+        <i class="pi" :class="isInFav ? 'pi-check' : 'pi-plus'"></i>
+      </div>
+    </div>
+    <div class="card-body">
       <div>
         <h3 class="currency-name">
           {{ cryptoData.NAME }}
           <i class="currency-symbol">({{ cryptoData.SYMBOL }})</i>
         </h3>
 
-        <p class="currency-price">{{ formatMoney(cryptoData.PRICE_USD, { isBigNum: true }) }}</p>
+        <p class="currency-price">{{ formatMoney(cryptoData.PRICE_USD) }}</p>
 
         <div class="currency-info-item">
           24h Change:
@@ -42,17 +64,10 @@ if (props.cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD > 0) {
         <div class="currency-info-item">
           Market cap:
           <i class="currency-info-item-value">
-            {{ formatMoney(cryptoData.CIRCULATING_MKT_CAP_USD, { isBigNum: true }) }}
+            {{ formatMoney(cryptoData.CIRCULATING_MKT_CAP_USD) }}
           </i>
         </div>
       </div>
-    </div>
-
-    <div class="currency-actions">
-      <label class="switch">
-        <input type="checkbox" :checked="cryptoData.isActive" />
-        <span class="slider round"></span>
-      </label>
     </div>
   </div>
 </template>
@@ -61,23 +76,42 @@ if (props.cryptoData.SPOT_MOVING_24_HOUR_CHANGE_PERCENTAGE_USD > 0) {
 .currency-card {
   display: flex;
   flex-direction: column;
+  min-height: 180px;
   border: 1px solid var(--surface-muted);
-  gap: 1.5rem;
+  /* gap: 0.5rem; */
   background-color: var(--surface);
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.currency-icon {
-  width: 60px;
-  height: 60px;
+.card-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .card-body {
   display: flex;
-  height: 100px;
   gap: 10px;
+}
+
+.add-to-favorie {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.add-to-favorie:hover {
+  background: var(--surface-muted);
+}
+
+.currency-icon {
+  width: 50px;
+  height: 50px;
 }
 
 .currency-price {

@@ -1,8 +1,7 @@
 <template>
   <div class="disclaimer-wrapper">
     <p class="disclaimer-content">
-      ⚠️ This crypto dashboard is for <strong>educational and practice purposes</strong> only. No
-      real trading or financial services are provided.
+      ⚠️ This crypto dashboard is for <strong>educational and practice purposes</strong> only.
     </p>
   </div>
 </template>

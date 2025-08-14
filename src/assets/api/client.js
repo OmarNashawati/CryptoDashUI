@@ -11,21 +11,6 @@ const api = axios.create({
   timeout: 10000,
 })
 
-/*
-api.interceptors.request.use(
-  (config) => {
-    // Example: Add token if available
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-*/
-
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
@@ -33,6 +18,7 @@ api.interceptors.response.use(
     if (error.response?.state === 401) {
       // Example: Redirect to login
       // window.location.href = '/login'
+      console.log(error.response)
     } else if (error.response?.state === 404) {
       console.log(error.response)
     }
