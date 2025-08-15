@@ -6,6 +6,8 @@ import FooterDisclaimer from '@/components/FooterDisclaimer.vue'
 
 import { useCrytproStore } from '@/Stores/cryptoStore'
 import { onMounted } from 'vue'
+const apiBase = import.meta.env.VITE_API_URL_2
+console.log(apiBase)
 
 const cryptoStore = useCrytproStore()
 
